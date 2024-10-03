@@ -1,5 +1,7 @@
 package geometry;
 
+import java.util.Objects;
+
 public class Rectangle extends Figure{
     double width, length;
 
@@ -14,6 +16,20 @@ public class Rectangle extends Figure{
             throw new ZeroLengthException("длина и ширина не могут быть 0");
         this.width = width;
         this.length = length;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rectangle rectangle = (Rectangle) o;
+        return     Double.compare(width, rectangle.width) == 0 && Double.compare(length, rectangle.length) == 0
+                || Double.compare(width, rectangle.length) == 0 && Double.compare(length, rectangle.width) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(width, length);
     }
 
     @Override

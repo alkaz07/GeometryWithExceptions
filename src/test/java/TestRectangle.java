@@ -75,4 +75,28 @@ public class TestRectangle {
             throw new RuntimeException(e);
         }
     }
+
+    @Test
+    public void testEquals1(){
+        try {
+            Rectangle r1 = new Rectangle(10, 15);
+            Rectangle r2 = new Rectangle(10, 15);
+            Assertions.assertEquals(true, r1.equals(r2));
+            Assertions.assertEquals(true, r2.equals(r1));
+        } catch (GeometryException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void testEquals2(){
+        try {
+            Rectangle r1 = new Rectangle(100, 150);
+            Rectangle r2 = new Rectangle(150, 100);
+            Assertions.assertEquals(true, r1.equals(r2));
+            Assertions.assertEquals(true, r2.equals(r1));
+        } catch (GeometryException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
