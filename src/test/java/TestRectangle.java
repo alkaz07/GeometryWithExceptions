@@ -105,8 +105,7 @@ public class TestRectangle {
         try {
             Rectangle r1 = new Rectangle(10, 15);
             Rectangle r2 = new Rectangle(10, 15);
-            Assertions.assertEquals(r2.equals(r1), r1.equals(r2));
-            Assertions.assertEquals(r1.equals(r2), r2.equals(r1));
+            Assertions.assertEquals(r2.hashCode(), r1.hashCode());
         } catch (GeometryException e) {
             throw new RuntimeException(e);
         }
@@ -117,8 +116,18 @@ public class TestRectangle {
         try {
             Rectangle r1 = new Rectangle(100, 150);
             Rectangle r2 = new Rectangle(150, 100);
-            Assertions.assertEquals(r2.equals(r1), r1.equals(r2));
-            Assertions.assertEquals(r1.equals(r2), r2.equals(r1));
+            Assertions.assertEquals(r2.hashCode(), r1.hashCode());
+        } catch (GeometryException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Test
+    public void testHashCode3() {
+        try {
+            Rectangle r1 = new Rectangle(100, 150);
+            Rectangle r2 = new Rectangle(100, 151);
+            Assertions.assertNotEquals(r2.hashCode(), r1.hashCode());
         } catch (GeometryException e) {
             throw new RuntimeException(e);
         }

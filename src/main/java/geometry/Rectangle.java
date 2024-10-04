@@ -29,7 +29,8 @@ public class Rectangle extends Figure{
 
     @Override
     public int hashCode() {
-        return Objects.hash(width, length) + Objects.hash(length, width);
+       // return Objects.hash(width, length) + Objects.hash(length, width);
+        return Objects.hashCode(width + length);
     }
 
     @Override
