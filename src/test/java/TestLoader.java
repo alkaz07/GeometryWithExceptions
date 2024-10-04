@@ -1,5 +1,7 @@
 import geometry.*;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.File;
@@ -43,7 +45,7 @@ public class TestLoader {
     @Test
     public void testLoadBad2(){
         String s = "src/test/resources/bad2.txt";
-        Assertions.assertThrows(NumberFormatException.class, ()->Loader.loadRecList(s));
+        Assertions.assertThrows(GeometryException.class, ()->Loader.loadRecList(s));
     }
     @Test
     public void testLoadBad3(){
@@ -73,5 +75,54 @@ public class TestLoader {
     }
 
     //подготовка контекста для всех методов тестировщика
+    @BeforeAll
+    public static void makeFileBad6() throws IOException {
+        String s = "src/test/resources/bad6";
+        System.out.println("Подготовка: делаем файл "+s);
+        FileWriter fileWriter = new FileWriter(s);
+        fileWriter.write("2 2\n" +
+                        "\n" +
+                        "3 4");
+        fileWriter.close();
+    }
 
+    @Test
+    public void testLoadBad6(){
+        String s = "src/test/resources/bad6";
+        Assertions.assertThrows(Exception.class, ()->Loader.loadRecList(s));
+    }
+
+    // Сброс контекста для всех методов
+    @AfterAll
+    public static void deleteFileBad6()
+    {
+        String s = "src/test/resources/bad6";
+        System.out.println("Очистка: удаляем файл "+s);
+        new File(s).delete();
+    }
+
+    @BeforeAll
+    public static void makeFileBad7() throws IOException {
+        String s = "src/test/resources/bad7";
+        System.out.println("Подготовка: делаем файл "+s);
+        FileWriter fileWriter = new FileWriter(s);
+        fileWriter.write("1 2 3");
+        fileWriter.close();
+    }
+
+    @Test
+    public void testLoadBad7(){
+        String s = "src/test/resources/bad7";
+        Assertions.assertThrows(Exception.class, ()->Loader.loadRecList(s));
+    }
+
+    // Сброс контекста для всех методов
+
+    @AfterAll
+    public static void deleteFileBad7()
+    {
+        String s = "src/test/resources/bad7";
+        System.out.println("Очистка: удаляем файл "+s);
+        new File(s).delete();
+    }
 }
