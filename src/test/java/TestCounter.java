@@ -14,4 +14,21 @@ public class TestCounter {
         //Проверка
 
     }
+
+    @Test
+    public void test2() throws GeometryException {
+        String s = "src/test/resources/countOk2.txt";
+        HashMap<Rectangle, Integer> expected = new HashMap<>();
+        //Проверка
+
+    }
+    @Test
+    public void test3() throws GeometryException {
+        String s = "src/test/resources/countOk3.txt";
+        HashMap<Rectangle, Integer> expected = new HashMap<>();
+        expected.put(new Rectangle(10, 15), 4);
+        expected.put(new Rectangle(11, 11), 1);
+        //Проверка
+
+    }
 }
