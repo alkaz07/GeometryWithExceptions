@@ -8,10 +8,7 @@ public class RectangleCounterTumanov {
         List<Rectangle> rectanglesList = Loader.loadRecList(fileName);
         HashMap<Rectangle, Integer> rectangleMap = new HashMap<>();
         for (Rectangle rectangle : rectanglesList) {
-            if (rectangleMap.containsKey(rectangle)) {
-                rectangleMap.replace(rectangle, rectangleMap.get(rectangle) + 1);
-            }
-            else rectangleMap.put(rectangle, 1);
+            rectangleMap.put(rectangle, rectangleMap.getOrDefault(rectangle, 0) + 1);
         }
         return rectangleMap;
     }
