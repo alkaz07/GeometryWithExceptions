@@ -125,4 +125,5 @@ public class TestLoader {
         System.out.println("Очистка: удаляем файл "+s);
         new File(s).delete();
     }
+
 }
