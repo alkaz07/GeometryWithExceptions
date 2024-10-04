@@ -1,10 +1,12 @@
-import geometry.GeometryException;
-import geometry.Loader;
-import geometry.Rectangle;
+import geometry.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Vector;
 
@@ -35,18 +37,41 @@ public class TestLoader {
 
     @Test
     public void testLoadBad1(){
-        String s = "test/resources/bad1.txt";
-        Assertions.assertThrows(Exception.class, ()->Loader.loadRecList(s));
+        String s = "src/test/resources/bad1.txt";
+        Assertions.assertThrows(NumberFormatException.class, ()->Loader.loadRecList(s));
     }
     @Test
     public void testLoadBad2(){
-        String s = "test/resources/bad2.txt";
-        Assertions.assertThrows(Exception.class, ()->Loader.loadRecList(s));
+        String s = "src/test/resources/bad2.txt";
+        Assertions.assertThrows(NumberFormatException.class, ()->Loader.loadRecList(s));
     }
     @Test
     public void testLoadBad3(){
-        String s = "test/resources/bad3.txt";
-        Assertions.assertThrows(Exception.class, ()->Loader.loadRecList(s));
+        String s = "src/test/resources/bad3.txt";
+        Assertions.assertThrows(NumberFormatException.class, ()->Loader.loadRecList(s));
     }
+    @Test
+    public void testLoadBad4(){
+        String s = "src/test/resources/bad4.txt";
+        Assertions.assertThrows(NegativeLengthException.class, ()->Loader.loadRecList(s));
+    }
+
+    @Test
+    public void testLoadBad5() throws IOException {
+        //Подготовка контекста
+        String s = "src/test/resources/bad5";
+        //String s = "bad5";
+        FileWriter fileWriter = new FileWriter(s);
+        fileWriter.write("10 0");
+        fileWriter.close();
+        //Проверка
+        Assertions.assertThrows(ZeroLengthException.class, ()->Loader.loadRecList(s));
+        //ВАЖНО!!! Вернуть контекст в предыдущее состояние!
+        /*File myFile = new File(s);
+        myFile.delete();*/
+        new File(s).delete();
+    }
+
+    //подготовка контекста для всех методов тестировщика
 
 }
