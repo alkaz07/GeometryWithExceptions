@@ -26,4 +26,27 @@ public class TestLoader {
         expected.add(new Rectangle(3.4, 7.12));
         Assertions.assertIterableEquals(expected, Loader.loadRecList(s));
     }
+
+    @Test
+    public void testLoadBad0(){
+        String s = "test/resources/abracadabra.net";
+        Assertions.assertThrows(Exception.class, ()->Loader.loadRecList(s));
+    }
+
+    @Test
+    public void testLoadBad1(){
+        String s = "test/resources/bad1.txt";
+        Assertions.assertThrows(Exception.class, ()->Loader.loadRecList(s));
+    }
+    @Test
+    public void testLoadBad2(){
+        String s = "test/resources/bad2.txt";
+        Assertions.assertThrows(Exception.class, ()->Loader.loadRecList(s));
+    }
+    @Test
+    public void testLoadBad3(){
+        String s = "test/resources/bad3.txt";
+        Assertions.assertThrows(Exception.class, ()->Loader.loadRecList(s));
+    }
+
 }
